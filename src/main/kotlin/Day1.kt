@@ -2,7 +2,7 @@
  * Part 1 answer: 444019
  * Part 2 answer: 29212176
  */
-class Day1 {
+class Day1 : Day<Int,Int>("day1.txt"){
 
     /**
      * Iterate through input once.
@@ -11,10 +11,10 @@ class Day1 {
      * If so, the solution is the value at key v.
      * Time complexity is O(n) because checking for pair of current v is constant time due to hashing.
      */
-    fun part1(arr: List<String>): Int {
+    override fun part1(): Int {
         val map = mutableMapOf<Int,Int>()
-        for (line in arr.indices) {
-            val v = arr[line].toInt()
+        for (line in input.indices) {
+            val v = input[line].toInt()
             // Check for current p in map
             if (map[v] !== null) {
                 println("-Part 1-\nValue 1: ${v}\nValue 2: ${map[v]!!}")
@@ -36,11 +36,11 @@ class Day1 {
      * Time complexity is O(n*n) because each value is being checked in map of each previous value.
      * Fortunately, checking is constant time, but still sucks that every previous value is inspected.
      */
-    fun part2(arr: List<String>): Int {
+    override fun part2(): Int {
         val map = mutableMapOf<Int, MutableMap<Int,Int>>()
 
-        for (line in arr.indices) {
-            val v = arr[line].toInt()
+        for (line in input.indices) {
+            val v = input[line].toInt()
             for (key in map.keys) {
                 if (map[key]?.get(v) !== null) {
                     println("-Part 2-\nValue 1: ${key}\nValue 2: ${v}\nValue 3: ${2020-key-v}")

@@ -2,7 +2,7 @@
  * Part 1 answer: 548
  * Part 2 answer: 502
  */
-class Day2 {
+class Day2 : Day<Int,Int>("day2.txt") {
 
     /**
      * Track running total of valid passwords, starting from zero.
@@ -11,10 +11,10 @@ class Day2 {
      * If occurrences is between bounds, increment running total.
      * Run time is O(n) - simply running through every character in entire input
      */
-    fun part1(arr: List<String>): Int {
+    override fun part1(): Int {
         var totalCorrect = 0
 
-        for (line in arr) {
+        for (line in input) {
             val reqs = line.substringBefore(':').split("-"," ")
             val min = reqs[0].toInt()
             val max = reqs[1].toInt()
@@ -39,10 +39,10 @@ class Day2 {
     /**
      * Setup is similar to Part 1, but now min -> first index and max -> last index.
      */
-    fun part2(arr: List<String>): Int {
+    override fun part2(): Int {
         var totalCorrect = 0
 
-        for (line in arr) {
+        for (line in input) {
             val meta = line.split("-"," ")
             val left = meta[0].toInt()-1    // -1 to turn cardinality to indices
             val right = meta[1].toInt()-1
